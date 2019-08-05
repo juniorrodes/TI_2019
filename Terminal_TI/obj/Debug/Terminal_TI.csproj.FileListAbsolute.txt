@@ -1,0 +1,10 @@
+C:\Users\junio\source\repos\Terminal_TI\Terminal_TI\obj\Debug\Terminal_TI.csprojAssemblyReference.cache
+C:\Users\junio\source\repos\Terminal_TI\Terminal_TI\obj\Debug\Terminal_TI.Form1.resources
+C:\Users\junio\source\repos\Terminal_TI\Terminal_TI\obj\Debug\Terminal_TI.Properties.Resources.resources
+C:\Users\junio\source\repos\Terminal_TI\Terminal_TI\obj\Debug\Terminal_TI.csproj.GenerateResource.cache
+C:\Users\junio\source\repos\Terminal_TI\Terminal_TI\obj\Debug\Terminal_TI.csproj.CoreCompileInputs.cache
+C:\Users\junio\source\repos\Terminal_TI\Terminal_TI\bin\Debug\Terminal_TI.exe.config
+C:\Users\junio\source\repos\Terminal_TI\Terminal_TI\bin\Debug\Terminal_TI.exe
+C:\Users\junio\source\repos\Terminal_TI\Terminal_TI\bin\Debug\Terminal_TI.pdb
+C:\Users\junio\source\repos\Terminal_TI\Terminal_TI\obj\Debug\Terminal_TI.exe
+C:\Users\junio\source\repos\Terminal_TI\Terminal_TI\obj\Debug\Terminal_TI.pdb
