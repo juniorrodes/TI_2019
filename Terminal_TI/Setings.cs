@@ -18,8 +18,8 @@
         public static Directions directions { get; set; }
 
         public Setings() {
-            Width = 20;
-            Height = 20;
+            Width = 16;
+            Height = 16;
             Speed = 12;
             Score = 0;
             Points = 100;

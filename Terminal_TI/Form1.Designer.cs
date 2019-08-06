@@ -24,6 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pbCanvas = new System.Windows.Forms.PictureBox();
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.lbGameOver = new System.Windows.Forms.Label();
@@ -33,7 +34,10 @@
             // 
             // pbCanvas
             // 
-            this.pbCanvas.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.pbCanvas.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pbCanvas.ErrorImage = null;
+            this.pbCanvas.Image = ((System.Drawing.Image)(resources.GetObject("pbCanvas.Image")));
+            this.pbCanvas.InitialImage = null;
             this.pbCanvas.Location = new System.Drawing.Point(12, 12);
             this.pbCanvas.Name = "pbCanvas";
             this.pbCanvas.Size = new System.Drawing.Size(640, 560);
@@ -65,6 +69,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(838, 582);
             this.Controls.Add(this.Score);
             this.Controls.Add(this.lbGameOver);

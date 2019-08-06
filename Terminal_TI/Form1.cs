@@ -25,9 +25,10 @@ namespace Terminal_TI {
             MaxWidht = pbCanvas.Size.Width / Setings.Width;
 
             // seta a velocidade do jogo  e inicia o timer
-            GameTimer.Interval = 1500 / Setings.Speed;
+            GameTimer.Interval = 1700 / Setings.Speed;
             GameTimer.Tick += UpdateScreen;
             GameTimer.Start();
+
 
             StartGame();
 
@@ -35,13 +36,23 @@ namespace Terminal_TI {
 
         private void StartGame() {
             new Setings();
+            Random random = new Random();
+            GameTimer.Interval = 1700 / Setings.Speed;
 
+            int x;
+            int y;
             lbGameOver.Visible = false;
             Snake.Clear();
-            Square head = new Square();
-            head.x = 10;
-            head.y = 5;
-            Snake.Add(head);
+            List<Square> body = new List<Square>();
+            x = random.Next(5, MaxWidht - 5);
+            y = random.Next(10, MaxHeight - 10);
+            for (int i = 0; i < 3; i++) {
+                body.Add(new Square());
+                //body[i].x = x + i;
+                body[i].y = y + i;
+                Snake.Add(body[i]);
+            }
+
             GenerateFood();
         }
 
@@ -65,16 +76,6 @@ namespace Terminal_TI {
                     StartGame();
                 }
             }else {
-                if(Snake.Count - 1 == 0) {
-                    if ((Input.KeyPressed(Keys.Right)))
-                        Setings.directions = Directions.Right;
-                    else if ((Input.KeyPressed(Keys.Left)))
-                        Setings.directions = Directions.Left;
-                    else if ((Input.KeyPressed(Keys.Up)))
-                        Setings.directions = Directions.Up;
-                    else if ((Input.KeyPressed(Keys.Down)))
-                        Setings.directions = Directions.Down;
-                }
                 if ((Input.KeyPressed(Keys.Right)) && (Setings.directions != Directions.Left))
                     Setings.directions = Directions.Right;
                 else if ((Input.KeyPressed(Keys.Left)) && (Setings.directions != Directions.Right))
@@ -95,16 +96,22 @@ namespace Terminal_TI {
             Graphics canvas = e.Graphics;
             Brush SnakeCollor;
             if (!Setings.GameOver) {
-                SnakeCollor = Brushes.ForestGreen;
+                SnakeCollor = Brushes.DarkOliveGreen;
                 for (int i = 0; i < Snake.Count; i++) {
+                    canvas.FillRectangle(Brushes.Black, new Rectangle(Snake[i].x * Setings.Width - 1,
+                        Snake[i].y * Setings.Height, Setings.Width +  1, Setings.Height + 1));
+                    canvas.FillRectangle(Brushes.Black, new Rectangle(Snake[i].x * Setings.Width,
+                        Snake[i].y * Setings.Height - 1, Setings.Width - 1, Setings.Height - 1));
+                    canvas.FillRectangle(Brushes.Black, new Rectangle(Snake[i].x * Setings.Width,
+                        Snake[i].y * Setings.Height - 1, Setings.Width + 1, Setings.Height + 1));
                     canvas.FillRectangle(SnakeCollor, new Rectangle(Snake[i].x * Setings.Width, 
                         Snake[i].y * Setings.Height, Setings.Width, Setings.Height));
-                    canvas.FillRectangle(Brushes.Red,
+                    canvas.FillEllipse(Brushes.Red,
                         new Rectangle(food.x * Setings.Width, food.y * Setings.Height, Setings.Width, Setings.Height));
 
                 }
             }else {
-                string GameOver = "Game over \nYour final score is: " + Setings.Score + "\nPress enter to continue.";
+                string GameOver = "Game over \nA sua pontuação final foi: " + Setings.Score + "\nAperte enter para continuar";
                 lbGameOver.Text = GameOver;
                 lbGameOver.Visible = true;
             }
@@ -135,13 +142,14 @@ namespace Terminal_TI {
                     }
 
                     //detecta a colisão com o corpo
-                    for(int j = 1; j < Snake.Count; j++) {
-                        if((Snake[i].x == Snake[j].x) && (Snake[i].y == Snake[j].y)) {
+                    for (int j = 3; j < Snake.Count; j++) {
+                        if ((Snake[0].x == Snake[j].x) && (Snake[0].y == Snake[j].y)) {
                             Setings.GameOver = true;
                         }
                     }
+
                     //detecta a colisão com a comida
-                    if((Snake[i].x == food.x) && (Snake[i].y == food.y)) {
+                    if ((Snake[i].x == food.x) && (Snake[i].y == food.y)) {
                         Eat();
                     }
 
@@ -160,6 +168,7 @@ namespace Terminal_TI {
             Snake.Add(square);
 
             Setings.Score += Setings.Points;
+            if(GameTimer.Interval >= 45) GameTimer.Interval-= 3;
             //gera um novo alimento
             GenerateFood();
         }
